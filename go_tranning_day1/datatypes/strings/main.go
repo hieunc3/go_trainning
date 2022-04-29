@@ -32,6 +32,10 @@ func main() {
 	printBytes(myString4)
 	printChars(myString4)
 	fmt.Println("After substring from 0:", myString4[1:])
+
+	//Custom substring func
+	fmt.Printf("String Rune after substring from %d to %d: %v\n", 1, 3, subString(1, 3, myString3))
+
 }
 
 func printBytes(s string) {
@@ -56,4 +60,14 @@ func printCharRune(runes []rune) {
 		fmt.Printf("%c ", runes[i])
 	}
 	fmt.Println()
+}
+
+func subString(start, end int, s string) string {
+	sConvert := []rune(s)
+	if start < 0 && end > len(sConvert) {
+		start = 0
+		end = len(sConvert)
+	}
+	fmt.Printf("String after substring from %d to %d: %v\n", start, end, sConvert)
+	return string(sConvert[start:end])
 }
