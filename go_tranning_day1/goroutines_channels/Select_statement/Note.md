@@ -1,0 +1,3 @@
+- Select statement is used to choose from multiple send/receive channel operations
+- The select statement blocks until one of the send/receive operations is ready. 
+- If multiple operations are ready, one of them is chosen at random. 
