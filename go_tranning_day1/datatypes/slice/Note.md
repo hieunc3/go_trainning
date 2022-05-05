@@ -1,0 +1,6 @@
+- Slice and an array connected with each other, a slice is a reference to an underlying array
+- It's allowed to store duplicate elements in the slice
+- Components of Slice:
+  - Pointer: The pointer is used to points to the first element of the array that is accessible through the slice. Here, it's not necessary that the pointed is the frist element of the array
+  - Length: The length is the total number of elments represent in the array
+  - Capacity: The capacity represents the maximum size upto which it can expand

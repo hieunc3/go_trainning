@@ -1,0 +1,14 @@
+- Struct:
+  - No inheritance in golang
+  - No super or parent
+  - Methods:
+    - A function that go into a classes -> It's call a method
+    - Methods allow a logical grouping of behaviour related to type similar to classes.
+    - Methods of anonymous struct
+    - Important Points:
+      - Whenever you pass Object to the struct -> pass into the copy -> where pointer comming in to solve this problem
+      - The method contains a receiver argument in it.
+      - With the help of the receiver argument, the method can access the properties of the receiver
+      - The receiver can be of struct type or non-struct type
+      - Methods of the same name but different types can be defined in the program
+    - When a method has a value receiver, it will accept both pointer & value receiver

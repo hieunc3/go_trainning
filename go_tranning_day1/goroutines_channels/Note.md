@@ -1,0 +1,26 @@
+- Concurrency
+  - Define:
+    - Concurrency is the capability to deal with lots of things at once.
+    - Run in a single-core processor
+    - Concurrent processes start at different points of time and their execution cycles overlay
+  - Example: describe 2 actions of web browser: rendering & downloading
+    - Single core processor: Downloading(300ms) -> Rendering(500ms) -> Downloading(700ms) -> Rendering (1100ms)
+  - Goroutines:
+    - Define:
+      - Goroutines are functions or methods that run concurrently with orther func or methods.
+      - Goroutines can be thought of as lightweight threads
+      - The cost of creating Goroutines is tiny when compared to a thread. Hence it's common for Go applications to have thousands of Goroutines running concurrently
+    - Channels:
+      - Channels can be thought of as pipes using which Goroutines communicate. Data can be sent from one end and received from the other end using channels.
+      - Deadlock:
+        - If a Goroutine is sending data on a channel, then it's expected that some other Goroutine should be receiving the data. If this does not happen, then the program will painic at runtime Deadlock
+        - If a Goroutine is waiting to receive data from a channel, then some other Goroutine is expected to write data on that channel, else the program will panic.
+      - Unidirectional channels: It is also possible to create unidirectional channels, that is channels that only send or receive data.
+- Parallelism
+  - Define:
+    - Parallelism is doing lots of things at the same time.
+    - Run on a multi-core processor
+    - Might run simultaneously in different cores
+  - Example: describe 2 actions of web browser: rendering & downloading
+    - Core 1: Downloading
+    - Core 2: Rendering

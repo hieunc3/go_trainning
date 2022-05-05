@@ -1,0 +1,2 @@
+- &: get the pointer
+- "\*": stands for is dereference
