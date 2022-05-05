@@ -16,3 +16,6 @@ trong function sẽ cắt inputString từ startIndex đến endIndex đươ�
 - Tìm hiểu Goroutines, Channels
 - Interfaces
 
+05/05/2022
+- Goroutines, Channels, Select statement, Worker-Pools
+
