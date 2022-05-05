@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 // func hello() {
 // 	fmt.Println("Hello world")
 // }
@@ -155,15 +153,76 @@ func main() {
 	// }
 
 	//6> another example
-	number := 123
-	sqrch := make(chan int)
-	cubech := make(chan int)
-	go calcSquares(number, sqrch)
-	go calcCubes(number, cubech)
-	squares, cubes := <-sqrch, <-cubech
-	fmt.Println("Final output", squares+cubes)
+	// number := 123
+	// sqrch := make(chan int)
+	// cubech := make(chan int)
+	// go calcSquares(number, sqrch)
+	// go calcCubes(number, cubech)
+	// squares, cubes := <-sqrch, <-cubech
+	// fmt.Println("Final output", squares+cubes)
+
+	//7> buffered channels
+	// ch := make(chan string, 2)
+	//it's possible to write 2 strings into the channel without being blocked.
+	/*
+		- we write 3 strings to buffered channel of capacity 2.
+		- the write is blocked since the channel has exceeded its capacity
+		- now some Goroutine must read from the channel in order for the write to proceed
+		- in this case, there is no concurrent routine reading from this channel -> deadlock throw error
+	*/
+	// ch <- "naveen"
+	// ch <- "paul"
+	// ch <- "steve"
+	// fmt.Println(<-ch)
+	// fmt.Println(<-ch)
+
+	// ch := make(chan int, 2)
+	// go write(ch)
+	// //after 2s main Goroutine will start
+	// time.Sleep(2 * time.Second)
+	// for v := range ch {
+	// 	fmt.Println("read value", v, "from ch")
+	// 	//after each read this block will sleep for 2s
+	// 	time.Sleep(2 * time.Second)
+	// }
+
+	//8> Wait Group
+	/*
+		The way WaitGroup works is by using a counter.
+			When we call Add on the WaitGroup and pass it an int, the WaitGroup's counter is incremented by the value passed to Add()
+			The way to decrement the counter is by calling Done() method on the WaitGroup
+			The Wait() method blocks the Goroutine in which it's called until the counter becomes zero
+	*/
+	// var wg sync.WaitGroup
+	// no := 3
+	// for i := 0; i < no; i++ {
+	// 	//each time iterates it will increment 1 to WaitGroup Counter -> counter = 3
+	// 	wg.Add(1)
+	// 	go process(i, &wg)
+	// }
+	// wg.Wait()
+	// fmt.Println("All goroutines finished executing")
 }
 
+//8>
+// func process(i int, wg *sync.WaitGroup) {
+// 	fmt.Println("started Goroutine", i)
+// 	time.Sleep(2 * time.Second)
+// 	fmt.Printf("Goroutine %d ended\n", i)
+// 	//The counter is decremented by the call to wg.Done
+// 	wg.Done()
+// }
+
+//7>
+// func write(ch chan int) {
+// 	for i := 0; i < 5; i++ {
+// 		ch <- i
+// 		fmt.Println("successfully wrote", i, "to ch")
+// 	}
+// 	defer close(ch)
+// }
+
+//5>
 // func producer(chnl chan int) {
 // 	defer close(chnl)
 // 	for i := 0; i < 10; i++ {
@@ -171,6 +230,7 @@ func main() {
 // 	}
 // }
 
+//4>
 // func calcSquares(number int, squareop chan int) {
 // 	sum := 0
 // 	for number != 0 {
@@ -193,33 +253,34 @@ func main() {
 // 	cubeop <- sum
 // }
 
-func digits(number int, dchnl chan int) {
-	for number != 0 {
-		digit := number % 10
-		dchnl <- digit
-		number /= 10
-	}
-	defer close(dchnl)
-}
+//6> Another example func
+// func digits(number int, dchnl chan int) {
+// 	for number != 0 {
+// 		digit := number % 10
+// 		dchnl <- digit
+// 		number /= 10
+// 	}
+// 	defer close(dchnl)
+// }
 
-func calcSquares(number int, squareop chan int) {
-	sum := 0
-	dch := make(chan int)
-	go digits(number, dch)
-	for digit := range dch {
-		sum += digit * digit
-	}
-	//we send the sum result to the channel
-	squareop <- sum
-}
+// func calcSquares(number int, squareop chan int) {
+// 	sum := 0
+// 	dch := make(chan int)
+// 	go digits(number, dch)
+// 	for digit := range dch {
+// 		sum += digit * digit
+// 	}
+// 	//we send the sum result to the channel
+// 	squareop <- sum
+// }
 
-func calcCubes(number int, cubeop chan int) {
-	sum := 0
-	dch := make(chan int)
-	go digits(number, dch)
-	for digit := range dch {
-		sum += digit * digit * digit
-	}
-	//we send the sum result to the channel
-	cubeop <- sum
-}
+// func calcCubes(number int, cubeop chan int) {
+// 	sum := 0
+// 	dch := make(chan int)
+// 	go digits(number, dch)
+// 	for digit := range dch {
+// 		sum += digit * digit * digit
+// 	}
+// 	//we send the sum result to the channel
+// 	cubeop <- sum
+// }

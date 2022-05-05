@@ -12,10 +12,17 @@
       - The cost of creating Goroutines is tiny when compared to a thread. Hence it's common for Go applications to have thousands of Goroutines running concurrently
     - Channels:
       - Channels can be thought of as pipes using which Goroutines communicate. Data can be sent from one end and received from the other end using channels.
+      - By default channels are unbuffered, which states that they will only accept sends (chan <-) if there is a corresponding receive (<- chan) which are ready to receive then sent value
       - Deadlock:
         - If a Goroutine is sending data on a channel, then it's expected that some other Goroutine should be receiving the data. If this does not happen, then the program will painic at runtime Deadlock
         - If a Goroutine is waiting to receive data from a channel, then some other Goroutine is expected to write data on that channel, else the program will panic.
       - Unidirectional channels: It is also possible to create unidirectional channels, that is channels that only send or receive data.
+      - Buffered Channel:
+        - Allow to accept a limited number of values without a corresponding receiver for those values.
+        - Bufferered channel are blocked only when the buffer if full. Similarly receiving from a buffered channel are blocked only when the buffer will be empty
+        - It's possible to read data from a already closed buffered channel. The channel will return the data that is already written to the channel and once all the data has been read, it will return the zero value of channel
+        - Length of buffered channel: The length of the buffered channel is the number of elements currently queued in it. 
+        - Capacity of buffered channel: The capacity of a buffered channel is the number of values that the channel can hold
 - Parallelism
   - Define:
     - Parallelism is doing lots of things at the same time.
