@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"unicode/utf8"
 )
@@ -32,6 +33,21 @@ func main() {
 	printBytes(myString4)
 	printChars(myString4)
 	fmt.Println("After substring from 0:", myString4[1:])
+
+	//Concatenating Strings
+	/*
+		- bytes.Buffer with writeString() method. It prevents the generation of the unnecessary string object , it means it doesn't generate a new string.
+	*/
+	fmt.Println("==== Contactenating Strings ====")
+	var b bytes.Buffer
+	b.WriteString("Hello")
+	b.WriteString("World")
+	fmt.Println(b)
+
+	str1 := "Tutorial"
+	str2 := "Of Go"
+	result := fmt.Sprintf("%s%s", str1, str2)
+	fmt.Println("String is concatenated by str1 & str2: ", result)
 
 	//Custom substring func
 	fmt.Printf("String Rune after substring from %d to %d: %v\n", 1, 3, subString(1, 3, myString3))

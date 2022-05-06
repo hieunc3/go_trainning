@@ -85,11 +85,13 @@ func rankSortWithMap(nums []int, rank_list chan []int) {
 		}
 	}
 	for i, v := range nums {
-		for key, element := range arrMap {
-			if v == key {
-				arrRank[i] = element
+		go func(value int, index int) {
+			for key, element := range arrMap {
+				if value == key {
+					arrRank[index] = element
+				}
 			}
-		}
+		}(v, i)
 	}
 	printSlice(nums)
 	rank_list <- arrRank

@@ -1,0 +1,14 @@
+- ORM
+    - ORM means Object-Relational Mapping
+    - It's a technique that lets you query and manipulate data from a ralational database using an object oriented language
+- GORM 
+    - It's developer-friendly ORM library for Golang that supports:
+        - Associations(Has One, Has Many, Belongs To, Many To Many, Polymorphism)
+        - Hooks (Before/After Create/ Save/ Update/Delete/Find)
+        - Preloading (eager loading)
+        - Transactions
+        - Composite Primary Key
+        - SQL Builder
+        - Auto Migrations
+        - Plugins based on GORM callbacks
+        - GORM provides official support for  SQLite, MySQL, Postgres and SQL Server. 

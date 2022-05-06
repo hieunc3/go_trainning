@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"sync"
+)
+
 // func hello() {
 // 	fmt.Println("Hello world")
 // }
@@ -202,6 +207,25 @@ func main() {
 	// }
 	// wg.Wait()
 	// fmt.Println("All goroutines finished executing")
+
+	execute()
+}
+
+func runner1(wg *sync.WaitGroup) {
+	fmt.Println("Runner1 print")
+	wg.Done()
+}
+func runner2(wg *sync.WaitGroup) {
+	fmt.Println("Runner2 print")
+	wg.Done()
+}
+func execute() {
+	var wg sync.WaitGroup
+	wg.Add(2)
+	go runner1(&wg)
+	go runner2(&wg)
+	//this blocks the execution until its counter become 0
+	wg.Wait()
 }
 
 //8>
