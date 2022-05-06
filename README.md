@@ -19,3 +19,6 @@ trong function sẽ cắt inputString từ startIndex đến endIndex đươ�
 05/05/2022
 - Goroutines, Channels, Select statement, Worker-Pools
 
+06/05/2022
+- Thực hiện CRUD trong Golang
+- Tìm hiểu về thư viện GORM, liệt kê các chức năng của GORM kèm theo sample code
