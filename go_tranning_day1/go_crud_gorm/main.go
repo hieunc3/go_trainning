@@ -6,6 +6,7 @@ import (
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 /*
@@ -35,7 +36,9 @@ func dsn(dbname string) string {
 }
 
 func main() {
-	db, err := gorm.Open(mysql.Open(dsn("store")), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn("store")), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info), // Log câu lệnh sql trong console
+	})
 	if err != nil {
 		panic("failed to connect database")
 	}
@@ -56,7 +59,10 @@ func main() {
 	db.Create(categoryList)
 
 	//Create record
-	db.Create(&Product{Code: "A321", Price: 100, CategoryID: 1})
+	product := Product{Code: "A321", Price: 100, CategoryID: 1}
+	// var category Category
+	db.Create(&product)
+
 	//batch insert
 	var productList = []Product{
 		{Code: "A373", Price: 102, CategoryID: 2},
@@ -79,9 +85,10 @@ func main() {
 	//Delete product
 	deleteProductById(db, 1)
 }
-func formatDateTime(t time.Time) string {
-	return t.Format("2006-January-02")
-}
+
+// func formatDateTime(t time.Time) string {
+// 	return t.Format("2006-January-02")
+// }
 
 func getAllProducts(db *gorm.DB) {
 	fmt.Println("List Products")

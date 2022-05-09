@@ -1,0 +1,11 @@
+- Convert Go Object <-> Json strings
+    - package: encoding/json
+    - Using Marshal to convert object struct -> string
+        - Syntax: json.Marshal() return []byte,err
+        - Using Unmarshalling  to convert json -> object struct
+     - Syntax: json.Unmarshal([]byte(jsonString),storeVariable)
+- Golang Mux Router
+    - The name mux stands for "Http request multiplexer"
+    - Define: It's implements a request router and dispatcher for matching incoming requests to their respective handler
+    - Importaint Points:
+        - It implements the http.Handler interface so it is compatible with the standard http.ServeMux
