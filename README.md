@@ -22,3 +22,8 @@ trong function sẽ cắt inputString từ startIndex đến endIndex đươ�
 06/05/2022
 - Thực hiện CRUD trong Golang
 - Tìm hiểu về thư viện GORM, liệt kê các chức năng của GORM kèm theo sample code
+
+09/05/2022
+- Thêm example với Crud Gorm
+- Tìm hiểu về Mux Router
+- Basic Crud RestApi
