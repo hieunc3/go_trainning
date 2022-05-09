@@ -12,3 +12,6 @@
         - Auto Migrations
         - Plugins based on GORM callbacks
         - GORM provides official support for  SQLite, MySQL, Postgres and SQL Server. 
+- Format Time
+    - Syntax: func (t Time) Format(layout string) string
+    - Golang supports time for formatting and parsing via pattern-based layouts.
