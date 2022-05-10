@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"gorm.io/driver/mysql"
@@ -44,19 +45,28 @@ func main() {
 	}
 
 	//Drop table if exists
-	db.Migrator().DropTable(&Product{})
+	//db.Migrator().DropTable(&Product{}, &Category{})
 	db.Migrator().DropTable(&Category{})
+	db.Migrator().DropTable(&Product{})
 
 	//Migrate the shema
 	db.AutoMigrate(&Product{})
 	db.AutoMigrate(&Category{})
 
+	//add transaction
+	tx := db.Begin()
+	if err1 := tx.Error; err1 != nil {
+		log.Fatal(err1)
+	}
 	var categoryList = []Category{
 		{Name: "vegestable"},
 		{Name: "meat"},
 		{Name: "seafood"},
 	}
-	db.Create(categoryList)
+	if err := tx.Create(&categoryList); err != nil {
+		tx.Rollback()
+		log.Fatal(err)
+	}
 
 	//Create record
 	product := Product{Code: "A321", Price: 100, CategoryID: 1}
