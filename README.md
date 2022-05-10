@@ -27,3 +27,7 @@ trong function sẽ cắt inputString từ startIndex đến endIndex đươ�
 - Thêm example với Crud Gorm
 - Tìm hiểu về Mux Router
 - Basic Crud RestApi
+
+10/5/2022
+- Gorm Associations
+- Gorm Transaction
