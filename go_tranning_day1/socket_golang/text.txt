@@ -1,0 +1,4 @@
+{"name":"hieunguyen","message":"hieunguyen sent a message"}
+{"name":"quanghuy","message":"quanghuy sent a message"}
+{"name":"minh","message":"minh sent a message"}
+{"name":"vinhtran","message":"vinhtran sent a message"}

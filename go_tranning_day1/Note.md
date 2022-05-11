@@ -50,3 +50,11 @@
           - The slice does not copy the slice's data. It creates a new slice value that points to the original array
           - To increase the capacity of a slice one must creaate a new, larger slice and copy the contents of the original slice into it.
       - Interface type
+3> Encode & Decode from Json
+    + Encode:
+        - Using Struct Tags to control Encoding:
+            - The struct tage that encoding/json recognizes has a key of json and a value that controls the output.
+            -  By placing the camel-cased version of the field names as the value to the json key, the encoder will use that name instead
+        - Using `json: "name_change",omitempty"` 
+            - omitempty: show empty if the field is nil
+            - "-" ignore the field
