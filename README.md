@@ -31,3 +31,7 @@ trong function sẽ cắt inputString từ startIndex đến endIndex đươ�
 10/5/2022
 - Gorm Associations
 - Gorm Transaction
+
+11/05/2022
+- Cách gửi và nhận socket trong Golang
+- Đọc data từng dòng của 1 file sau đó bắn qua socket để phía server socket nhận rồi insert vào DB Mysql
