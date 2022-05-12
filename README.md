@@ -35,3 +35,7 @@ trong function sẽ cắt inputString từ startIndex đến endIndex đươ�
 11/05/2022
 - Cách gửi và nhận socket trong Golang
 - Đọc data từng dòng của 1 file sau đó bắn qua socket để phía server socket nhận rồi insert vào DB Mysql
+
+12/05/2022
+- Tìm hiểu File Handling
+- Tạo Room Chat sử dụng socket
