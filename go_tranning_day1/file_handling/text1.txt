@@ -1,0 +1,2 @@
+read from this file
+get text 
